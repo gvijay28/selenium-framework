@@ -1,0 +1,8 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="TestSet-1">
+    <test name="TestCas-1">
+        <classes>
+            <class name="stepdefinitions.testng.LoginTNG"/>
+        </classes>
+    </test>
+</suite>
