@@ -41,7 +41,7 @@ public class LoginSteps
     public void user_is_on_facebook_login_page() throws Throwable
     {
         loginPage = WebUtils.navigateToLoginPage(driver);
-        Assert.assertTrue("user should be onLILA login page", loginPage !=  null);
+        Assert.assertTrue("user should be on facebook login page", loginPage !=  null);
     }
 
     @When("^user enter username \"([^\"]*)\" and pass \"([^\"]*)\"$")

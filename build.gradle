@@ -35,7 +35,7 @@ task cucumberTest(type: Test) {
     testLogging.showStandardStreams = true
     systemProperties System.getProperties()
     systemProperties['user.dir'] = workingDir
-    //includes = ['**/*RunQuickLILATest*']
+    //includes = ['**/*RunTest*']
 }
 
 def stageDataTask(fromDir,  testSetName) {
