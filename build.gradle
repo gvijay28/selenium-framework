@@ -2,6 +2,7 @@ group 'G-001'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
+apply plugin: 'idea'
 
 sourceCompatibility = 1.8
 
@@ -20,6 +21,11 @@ dependencies {
     compile group: 'org.testng', name: 'testng', version: '6.11'
     compile group: 'org.apache.poi', name: 'poi', version: '3.16'
     compile group: 'org.apache.poi', name: 'poi-ooxml', version: '3.16'
+    compile group: 'javax.mail', name: 'mail', version: '1.4.7'
+    compile group: 'org.jsoup', name: 'jsoup', version: '1.7.2'
+    compile group: 'org.postgresql', name: 'postgresql', version: '9.4.1209.jre7'
+    compile group: 'com.oracle', name: 'ojdbc6', version:'11.1.0.7.0'
+
 }
 
 task cucumberTest(type: Test) {
@@ -29,4 +35,19 @@ task cucumberTest(type: Test) {
     testLogging.showStandardStreams = true
     systemProperties System.getProperties()
     systemProperties['user.dir'] = workingDir
+    //includes = ['**/*RunTest*']
+}
+
+def stageDataTask(fromDir,  testSetName) {
+    return tasks.create("stageDataTask${testSetName}", Copy) {
+        println "copying files form Dir \\Q:\\"+fromDir+"  to ${projectDir}/src/test/resources/"+ testSetName
+        into "${projectDir}/src/test/resources/" + testSetName
+        from "\\Q:\\"+fromDir
+        eachFile { println "Copying "+it.name }
+    }
+}
+
+task stageBrowsersExeFile <<
+{
+    stageDataTask("Browsers", "Browsers").execute()
 }
